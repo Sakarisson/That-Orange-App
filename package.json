@@ -10,10 +10,12 @@
     "lint": "eslint . --ext .js,.jsx,.ts,.tsx"
   },
   "dependencies": {
+    "axios": "^0.21.1",
     "react": "17.0.1",
     "react-native": "0.64.0",
     "react-native-safe-area-context": "^3.2.0",
-    "styled-components": "^5.2.1"
+    "styled-components": "^5.2.1",
+    "swr": "^0.5.4"
   },
   "devDependencies": {
     "@babel/core": "^7.12.9",
