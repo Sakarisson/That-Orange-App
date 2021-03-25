@@ -1,15 +1,39 @@
-import React from 'react';
-import { View } from 'react-native';
-import styled from 'styled-components';
-import ListItem from '../components/ListItem';
+import React, { useCallback, useState } from 'react';
+import { FlatList, RefreshControl } from 'react-native';
+import useSWR from 'swr';
+import { getTopStories } from '../api/hackerNewsApi';
+import StoryListItem from './StoryListItem';
 
-const Container = styled(View)``;
+const Home = () => {
+  const [renderId, setRenderId] = useState(0);
 
-const Home = () => (
-  <Container>
-    <ListItem label="Test1" />
-    <ListItem label="Test2" />
-  </Container>
-);
+  const { data, isValidating } = useSWR(
+    `topStories-${renderId}`,
+    getTopStories,
+  );
+
+  const renderItem = useCallback(
+    ({ item }: { item: string }) => <StoryListItem id={item} />,
+    [],
+  );
+
+  const onRefresh = () => {
+    setRenderId(renderId + 1);
+  };
+
+  return (
+    <FlatList
+      data={data?.data}
+      renderItem={renderItem}
+      keyExtractor={item => item}
+      refreshControl={
+        <RefreshControl
+          onRefresh={onRefresh}
+          refreshing={!!data && isValidating}
+        />
+      }
+    />
+  );
+};
 
 export default Home;
