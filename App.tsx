@@ -1,8 +1,6 @@
 import React from 'react';
-import {SafeAreaView} from 'react-native';
+import { SafeAreaView } from 'react-native';
 
-const App = () => {
-  return <SafeAreaView />;
-};
+const App = () => <SafeAreaView />;
 
 export default App;
