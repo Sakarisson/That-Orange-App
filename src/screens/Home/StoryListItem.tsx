@@ -2,10 +2,10 @@ import React from 'react';
 import useSWR from 'swr';
 import { InAppBrowser } from 'react-native-inappbrowser-reborn';
 
-import { getItem } from '../api/hackerNewsApi';
-import ListItem from '../components/ListItem';
-import getHostnameFromUrl from '../util/getHostnameFromUrl';
 import { useTheme } from 'styled-components';
+import { getItem } from '../../api/hackerNewsApi';
+import getHostnameFromUrl from '../../util/getHostnameFromUrl';
+import ListItem from '../../components/ListItem';
 
 type Props = {
   id: string;

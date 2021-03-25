@@ -2,8 +2,8 @@ import React, { useCallback } from 'react';
 import { FlatList, RefreshControl } from 'react-native';
 import { useTheme } from 'styled-components';
 import useSWR from 'swr';
-import { getTopStories } from '../api/hackerNewsApi';
-import Divider from '../components/Divider';
+import { getTopStories } from '../../api/hackerNewsApi';
+import Divider from '../../components/Divider';
 import StoryListItem from './StoryListItem';
 
 const identity = (input: string) => input;

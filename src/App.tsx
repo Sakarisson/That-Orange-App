@@ -2,7 +2,7 @@ import React from 'react';
 import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
 import styled from 'styled-components';
 import ThemedStatusBar from './components/ThemedStatusBar';
-import Home from './screens/Home';
+import AppNavigator from './navigation/AppNavigator';
 import DynamicThemeProvider from './style/theme/DynamicThemeProvider';
 
 const Root = styled(SafeAreaView)`
@@ -15,7 +15,7 @@ const App = () => (
     <DynamicThemeProvider>
       <Root>
         <ThemedStatusBar />
-        <Home />
+        <AppNavigator />
       </Root>
     </DynamicThemeProvider>
   </SafeAreaProvider>
