@@ -1,7 +1,7 @@
 import React from 'react';
 import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
 import styled from 'styled-components';
-import ListItem from './components/ListItem';
+import Home from './screens/Home';
 import Color from './style/Color';
 
 const Root = styled(SafeAreaView)`
@@ -12,8 +12,7 @@ const Root = styled(SafeAreaView)`
 const App = () => (
   <SafeAreaProvider>
     <Root>
-      <ListItem label="Test" />
-      <ListItem label="Test2" />
+      <Home />
     </Root>
   </SafeAreaProvider>
 );
