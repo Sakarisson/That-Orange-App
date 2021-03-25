@@ -1,10 +1,10 @@
 import React from 'react';
-import { Text, View } from 'react-native';
-import styled from 'styled-components';
-import Color from '../style/Color';
+import { View } from 'react-native';
+import styled, { useTheme } from 'styled-components';
+import { Body, Subtitle } from '../style/typography/Typography';
 
 const Container = styled(View)`
-  background-color: ${Color.BACKGROUND};
+  background-color: ${({ theme }) => theme.colors.BACKGROUND};
 `;
 
 const InnerContainer = styled(View)`
@@ -22,14 +22,17 @@ type Props = {
   sublabel?: string;
 };
 
-const ListItem = ({ label, sublabel }: Props) => (
-  <Container>
-    <InnerContainer>
-      <Text style={{ color: Color.TEXT_PRIMARY }}>{label}</Text>
-      <Text style={{ color: Color.TEXT_SECONDARY }}>{sublabel}</Text>
-    </InnerContainer>
-    <Divider />
-  </Container>
-);
+const ListItem = ({ label, sublabel }: Props) => {
+  const { colors } = useTheme();
+  return (
+    <Container>
+      <InnerContainer>
+        <Body>{label}</Body>
+        <Subtitle color={colors.TEXT_SECONDARY}>{sublabel}</Subtitle>
+      </InnerContainer>
+      <Divider />
+    </Container>
+  );
+};
 
 export default ListItem;

@@ -1,3 +1,5 @@
+import Color from '../Color';
+
 enum ThemeColorKey {
   TEXT_PRIMARY = 'TEXT_PRIMARY',
   TEXT_SECONDARY = 'TEXT_SECONDARY',
@@ -6,7 +8,7 @@ enum ThemeColorKey {
 }
 
 export type ThemeColors = {
-  [key in ThemeColorKey]: string;
+  [key in ThemeColorKey]: Color;
 };
 
 export type ThemeName = 'dark';

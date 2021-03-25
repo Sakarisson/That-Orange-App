@@ -1,10 +1,11 @@
+import Color from '../Color';
 import { ThemeColors } from './types';
 
 export const darkThemeColors: ThemeColors = {
-  TEXT_PRIMARY: 'rgb(255, 255, 255)',
-  TEXT_SECONDARY: 'rgba(255, 255, 255, 0.68)',
+  TEXT_PRIMARY: Color.WHITE,
+  TEXT_SECONDARY: Color.WHITE_68,
 
-  BACKGROUND: 'rgb(0, 0, 0)',
+  BACKGROUND: Color.BLACK,
 
-  DIVIDER: 'rgba(255, 255, 255, 0.3)',
+  DIVIDER: Color.BLACK_30,
 };
