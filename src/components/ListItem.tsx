@@ -8,7 +8,8 @@ const Container = styled(View)`
 `;
 
 const InnerContainer = styled(View)`
-  padding: 8px;
+  padding: 16px 8px;
+  flex-direction: column;
 `;
 
 const Divider = styled(View)`
@@ -18,12 +19,14 @@ const Divider = styled(View)`
 
 type Props = {
   label: string;
+  sublabel?: string;
 };
 
-const ListItem = ({ label }: Props) => (
+const ListItem = ({ label, sublabel }: Props) => (
   <Container>
     <InnerContainer>
       <Text style={{ color: Color.TEXT_PRIMARY }}>{label}</Text>
+      <Text style={{ color: Color.TEXT_SECONDARY }}>{sublabel}</Text>
     </InnerContainer>
     <Divider />
   </Container>
