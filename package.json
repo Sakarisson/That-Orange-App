@@ -23,8 +23,8 @@
     "react-native-reanimated": "^2.0.1",
     "react-native-safe-area-context": "^3.2.0",
     "react-native-screens": "^2.18.1",
-    "styled-components": "^5.2.1",
-    "swr": "^0.5.4"
+    "react-query": "^3.13.0",
+    "styled-components": "^5.2.1"
   },
   "devDependencies": {
     "@babel/core": "^7.12.9",

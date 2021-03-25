@@ -7,5 +7,8 @@ const hackerNewApi = axios.create({
   baseURL: 'https://api.hackerwebapp.com',
 });
 
-export const getNews = () =>
-  hackerNewApi.get('/news').then(validateResponse(NewsT));
+export const getNews = (page = 1) =>
+  hackerNewApi
+    .get(`/news?page=${page}`)
+    .then(validateResponse(NewsT))
+    .then(response => ({ ...response, page }));
