@@ -2,22 +2,18 @@ import React, { useCallback } from 'react';
 import { FlatList, RefreshControl } from 'react-native';
 import { useTheme } from 'styled-components';
 import useSWR from 'swr';
-import { getTopStories } from '../../api/hackerNewsApi';
+import { getNews } from '../../api/hackerNewsApi';
+import { NewsItem } from '../../api/runtimeTypes';
 import Divider from '../../components/Divider';
 import StoryListItem from './StoryListItem';
-
-const identity = (input: string) => input;
 
 const Home = () => {
   const theme = useTheme();
 
-  const { data, isValidating, revalidate } = useSWR(
-    'topStories',
-    getTopStories,
-  );
+  const { data, isValidating, revalidate } = useSWR('topStories', getNews);
 
   const renderItem = useCallback(
-    ({ item }: { item: string }) => <StoryListItem id={item} />,
+    ({ item }: { item: NewsItem }) => <StoryListItem {...item} />,
     [],
   );
 
@@ -27,10 +23,10 @@ const Home = () => {
 
   return (
     <FlatList
-      data={data.result.map(String)}
+      data={data.result}
       renderItem={renderItem}
       ItemSeparatorComponent={Divider}
-      keyExtractor={identity}
+      keyExtractor={item => String(item.id)}
       refreshControl={
         <RefreshControl
           onRefresh={revalidate}

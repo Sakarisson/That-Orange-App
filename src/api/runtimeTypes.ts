@@ -1,8 +1,11 @@
 import * as t from 'io-ts';
 
-export const TopStories = t.array(t.number);
-
-export const Item = t.type({
+const NewsItemT = t.type({
+  id: t.number,
   title: t.string,
   url: t.string,
 });
+
+export type NewsItem = t.TypeOf<typeof NewsItemT>;
+
+export const NewsT = t.array(NewsItemT);

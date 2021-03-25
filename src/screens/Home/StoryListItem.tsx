@@ -1,29 +1,23 @@
 import React from 'react';
-import useSWR from 'swr';
 import { InAppBrowser } from 'react-native-inappbrowser-reborn';
 
 import { useTheme } from 'styled-components';
-import { getItem } from '../../api/hackerNewsApi';
 import getHostnameFromUrl from '../../util/getHostnameFromUrl';
 import ListItem from '../../components/ListItem';
 
 type Props = {
-  id: string;
+  id: number;
+  url: string;
+  title: string;
 };
 
-const StoryListItem = ({ id }: Props) => {
+const StoryListItem = ({ url, title }: Props) => {
   const theme = useTheme();
 
-  const { data } = useSWR(`story-${id}`, () => getItem(id));
-
-  if (!data?.result) {
-    return null;
-  }
-
-  const hostName = getHostnameFromUrl(data.result.url);
+  const hostName = getHostnameFromUrl(url);
 
   const onPress = () => {
-    InAppBrowser.open(data.result.url, {
+    InAppBrowser.open(url, {
       animated: true,
       preferredBarTintColor: theme.colors.BACKGROUND,
       readerMode: true,
@@ -31,9 +25,7 @@ const StoryListItem = ({ id }: Props) => {
     });
   };
 
-  return (
-    <ListItem label={data.result.title} sublabel={hostName} onPress={onPress} />
-  );
+  return <ListItem label={title} sublabel={hostName} onPress={onPress} />;
 };
 
 export default StoryListItem;
