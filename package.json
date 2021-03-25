@@ -11,6 +11,8 @@
   },
   "dependencies": {
     "axios": "^0.21.1",
+    "fp-ts": "^2.9.5",
+    "io-ts": "^2.2.16",
     "react": "17.0.1",
     "react-native": "0.64.0",
     "react-native-safe-area-context": "^3.2.0",
