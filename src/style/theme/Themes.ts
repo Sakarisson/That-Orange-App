@@ -8,4 +8,6 @@ export const darkThemeColors: ThemeColors = {
   BACKGROUND: Color.BLACK,
 
   DIVIDER: Color.BLACK_30,
+
+  SPINNER: Color.BLACK_40,
 };

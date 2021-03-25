@@ -5,6 +5,7 @@ enum ThemeColorKey {
   TEXT_SECONDARY = 'TEXT_SECONDARY',
   BACKGROUND = 'BACKGROUND',
   DIVIDER = 'DIVIDER',
+  SPINNER = 'SPINNER',
 }
 
 export type ThemeColors = {

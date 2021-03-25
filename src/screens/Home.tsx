@@ -1,14 +1,17 @@
-import React, { useCallback, useState } from 'react';
+import React, { useCallback } from 'react';
 import { FlatList, RefreshControl } from 'react-native';
+import { useTheme } from 'styled-components';
 import useSWR from 'swr';
 import { getTopStories } from '../api/hackerNewsApi';
 import StoryListItem from './StoryListItem';
 
-const Home = () => {
-  const [renderId, setRenderId] = useState(0);
+const identity = (input: string) => input;
 
-  const { data, isValidating } = useSWR(
-    `topStories-${renderId}`,
+const Home = () => {
+  const theme = useTheme();
+
+  const { data, isValidating, revalidate } = useSWR(
+    'topStories',
     getTopStories,
   );
 
@@ -17,24 +20,23 @@ const Home = () => {
     [],
   );
 
-  const onRefresh = () => {
-    setRenderId(renderId + 1);
-  };
+  if (!data?.result) {
+    return null;
+  }
 
   return (
-    <>
-      <FlatList
-        data={data?.data}
-        renderItem={renderItem}
-        keyExtractor={item => item}
-        refreshControl={
-          <RefreshControl
-            onRefresh={onRefresh}
-            refreshing={!!data && isValidating}
-          />
-        }
-      />
-    </>
+    <FlatList
+      data={data.result.map(String)}
+      renderItem={renderItem}
+      keyExtractor={identity}
+      refreshControl={
+        <RefreshControl
+          onRefresh={revalidate}
+          refreshing={isValidating}
+          tintColor={theme.colors.SPINNER}
+        />
+      }
+    />
   );
 };
 

@@ -11,13 +11,13 @@ type Props = {
 const StoryListItem = ({ id }: Props) => {
   const { data } = useSWR(`story-${id}`, () => getItem(id));
 
-  if (!data) {
+  if (!data?.result) {
     return null;
   }
 
-  const hostName = getHostnameFromUrl(data.data.url);
+  const hostName = getHostnameFromUrl(data.result.url);
 
-  return <ListItem label={data?.data.title} sublabel={hostName} />;
+  return <ListItem label={data.result.title} sublabel={hostName} />;
 };
 
 export default StoryListItem;
