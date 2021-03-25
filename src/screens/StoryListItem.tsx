@@ -15,8 +15,6 @@ const StoryListItem = ({ id }: Props) => {
     return null;
   }
 
-  console.log(data.data);
-
   const hostName = getHostnameFromUrl(data.data.url);
 
   return <ListItem label={data?.data.title} sublabel={hostName} />;

@@ -1,19 +1,23 @@
 import React from 'react';
 import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
 import styled from 'styled-components';
+import ThemedStatusBar from './components/ThemedStatusBar';
 import Home from './screens/Home';
-import Color from './style/Color';
+import DynamicThemeProvider from './style/theme/DynamicThemeProvider';
 
 const Root = styled(SafeAreaView)`
   flex: 1;
-  background-color: ${Color.BACKGROUND};
+  background-color: ${({ theme }) => theme.colors.BACKGROUND};
 `;
 
 const App = () => (
   <SafeAreaProvider>
-    <Root>
-      <Home />
-    </Root>
+    <DynamicThemeProvider>
+      <Root>
+        <ThemedStatusBar />
+        <Home />
+      </Root>
+    </DynamicThemeProvider>
   </SafeAreaProvider>
 );
 

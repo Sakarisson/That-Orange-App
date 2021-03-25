@@ -14,7 +14,7 @@ const InnerContainer = styled(View)`
 
 const Divider = styled(View)`
   height: 1px;
-  background-color: ${Color.DIVIDER};
+  background-color: ${({ theme }) => theme.colors.DIVIDER};
 `;
 
 type Props = {

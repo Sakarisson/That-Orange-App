@@ -22,17 +22,19 @@ const Home = () => {
   };
 
   return (
-    <FlatList
-      data={data?.data}
-      renderItem={renderItem}
-      keyExtractor={item => item}
-      refreshControl={
-        <RefreshControl
-          onRefresh={onRefresh}
-          refreshing={!!data && isValidating}
-        />
-      }
-    />
+    <>
+      <FlatList
+        data={data?.data}
+        renderItem={renderItem}
+        keyExtractor={item => item}
+        refreshControl={
+          <RefreshControl
+            onRefresh={onRefresh}
+            refreshing={!!data && isValidating}
+          />
+        }
+      />
+    </>
   );
 };
 
