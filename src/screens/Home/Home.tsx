@@ -34,13 +34,18 @@ const Home = () => {
 
   const flattenedResults = combinedResults.filter(notEmpty).flat();
 
+  const filteredNonUniqueResults = flattenedResults.filter(
+    (element, index) =>
+      flattenedResults.findIndex(el => el.id === element.id) === index,
+  );
+
   if (!data) {
     return null;
   }
 
   return (
     <FlatList
-      data={flattenedResults}
+      data={filteredNonUniqueResults}
       renderItem={renderItem}
       ItemSeparatorComponent={Divider}
       keyExtractor={item => String(item.id)}
