@@ -3,6 +3,7 @@ import { FlatList, RefreshControl } from 'react-native';
 import { useTheme } from 'styled-components';
 import useSWR from 'swr';
 import { getTopStories } from '../api/hackerNewsApi';
+import Divider from '../components/Divider';
 import StoryListItem from './StoryListItem';
 
 const identity = (input: string) => input;
@@ -28,6 +29,7 @@ const Home = () => {
     <FlatList
       data={data.result.map(String)}
       renderItem={renderItem}
+      ItemSeparatorComponent={Divider}
       keyExtractor={identity}
       refreshControl={
         <RefreshControl
