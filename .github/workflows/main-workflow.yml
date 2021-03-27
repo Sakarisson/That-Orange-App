@@ -1,0 +1,25 @@
+name: CI
+
+on: push
+
+jobs:
+  js-checks:
+    name: Run JS checks
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+      - name: Setup Node (.nvmrc)
+        uses: dcodeIO/setup-node-nvm@master
+      - name: Cache Yarn Modules
+        uses: actions/cache@v2
+        with:
+          path: .cache
+          key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
+      - name: Install Dependencies
+        if: steps.cache.outputs.cache-hit != 'true'
+        run: yarn install --production=false --ignore-scripts --network-timeout 100000
+      - name: Run Type Check
+        run: yarn tsc
+      - name: Run Tests
+        run: yarn test
