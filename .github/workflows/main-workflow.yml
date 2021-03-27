@@ -9,11 +9,8 @@ jobs:
 
     steps:
       - uses: actions/checkout@v2
-      - name: Read Node Version from .nvmrc
-        run: echo "##[set-output name=NVMRC;]$(cat .nvmrc)"
-        id: nvm
       - name: Setup Node (.nvmrc)
-        uses: actions/setup-node@v1
+        uses: dcodeIO/setup-node-nvm@master
       - name: Cache Yarn Modules
         uses: actions/cache@v2
         with:
