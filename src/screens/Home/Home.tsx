@@ -1,51 +1,28 @@
 import React, { useCallback } from 'react';
 import { FlatList, RefreshControl } from 'react-native';
-import { useInfiniteQuery } from 'react-query';
 import { useTheme } from 'styled-components';
-import { getNews } from '../../api/hackerNewsApi';
 import { NewsItem } from '../../api/runtimeTypes';
 import Divider from '../../components/Divider';
+import { useNews } from './hooks';
 import StoryListItem from './StoryListItem';
-
-function notEmpty<TValue>(value: TValue | null | undefined): value is TValue {
-  return value !== null && value !== undefined;
-}
 
 const Home = () => {
   const theme = useTheme();
 
-  const { data, isLoading, refetch, fetchNextPage } = useInfiniteQuery(
-    'news',
-    ({ pageParam = 1 }) => getNews(pageParam),
-    {
-      getNextPageParam: lastPage => lastPage.page + 1,
-    },
-  );
+  const { news, isLoading, refetch, fetchNextPage } = useNews();
 
-  const combinedResults = data?.pages.map(page => page.result);
   const renderItem = useCallback(
     ({ item }: { item: NewsItem }) => <StoryListItem {...item} />,
     [],
   );
 
-  if (combinedResults === undefined) {
-    return null;
-  }
-
-  const flattenedResults = combinedResults.filter(notEmpty).flat();
-
-  const filteredNonUniqueResults = flattenedResults.filter(
-    (element, index) =>
-      flattenedResults.findIndex(el => el.id === element.id) === index,
-  );
-
-  if (!data) {
+  if (!news) {
     return null;
   }
 
   return (
     <FlatList
-      data={filteredNonUniqueResults}
+      data={news}
       renderItem={renderItem}
       ItemSeparatorComponent={Divider}
       keyExtractor={item => String(item.id)}
