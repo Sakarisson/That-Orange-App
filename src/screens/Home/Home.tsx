@@ -30,7 +30,6 @@ const Home = () => {
         fetchNextPage();
       }}
       onEndReachedThreshold={0.5}
-      showsVerticalScrollIndicator={false}
       refreshControl={
         <RefreshControl
           onRefresh={refetch}
